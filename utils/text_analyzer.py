@@ -1,15 +1,14 @@
-# =============================================================================
-# utils/text_analyzer.py
-# PURPOSE: Core analysis logic — skill extraction and JD matching.
-# Uses spaCy strictly for text cleaning/normalization (no ML models).
-# =============================================================================
-
+import streamlit as st
 import spacy
 
 # Load the small English model from spaCy.
-# We use it ONLY for tokenization and lowercasing (basic NLP cleaning).
-# NOTE: Run 'python -m spacy download en_core_web_sm' before running the app.
-nlp = spacy.load("en_core_web_sm")
+@st.cache_resource
+def load_spacy_model():
+    return spacy.load("en_core_web_sm")
+
+# ADD THIS LINE RIGHT HERE!
+# This actually runs the function and saves the cached dictionary to the 'nlp' variable
+nlp = load_spacy_model()
 
 
 # =============================================================================
